@@ -1,0 +1,26 @@
+//Strategy Design pattern
+
+class PaymentContext {
+    constructor(strategy){this.strategy = strategy} // takes the type of strategy 
+    setStrategy(strategy){this.strategy = strategy} // aCreditCardepts the type of strategy and assign it to this PaymentContext 
+    pay(amount){
+        this.strategy.pay(amount)
+    }
+}
+
+class CreditCard{
+    pay(amount){
+        console.log(`${amount} paid via CreditCard`)
+    }
+}
+
+class DebitCard{
+    pay(amount){
+        console.log(`${amount} paid via DebitCard`)
+    }
+}
+
+let  paymentContext = new PaymentContext(new CreditCard())// this will set the CreditCard strategy. 
+paymentContext.pay(100)// 100 paid via CreditCard
+paymentContext.setStrategy(new DebitCard()) // this will sets the debit card strategy. 
+paymentContext.pay(200)// 100 paid via DebitCard
