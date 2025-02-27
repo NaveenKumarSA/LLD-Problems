@@ -1,0 +1,30 @@
+class Subject {
+  constructor() {
+    this.observers = []; // initialise the array or state 
+  }
+
+  subscribe(observer) {
+    this.observers.push(observer);// add the functions or states
+  }
+
+  unsubscribe(observer) {
+    this.observers = this.observers.filter(obs => obs !== observer); //when unsubscribe the remove that from our state 
+  }
+
+  notify(data) {
+    this.observers.forEach(observer => observer(data)); //when notify do all the operations thats being assigned. 
+  }
+}
+
+const newsChannel = new Subject();
+
+const subscriber1 = (msg) => console.log("Subscriber 1:", msg);
+const subscriber2 = (msg) => console.log("Subscriber 2:", msg);
+
+newsChannel.subscribe(subscriber1);
+newsChannel.subscribe(subscriber2);
+
+newsChannel.notify("New JavaScript Update! 🚀");
+
+newsChannel.unsubscribe(subscriber1);
+newsChannel.notify("ESNext Features Released! 🎉");
