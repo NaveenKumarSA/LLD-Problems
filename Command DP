@@ -1,0 +1,25 @@
+//Command DP 
+
+class Command { // this class only has commands function declared 
+    execute(){}
+    undo(){}
+}
+class Light{ // this class has the logic to turn the ligh on and off 
+    turnOn(){console.log("light is On")}
+    turnOff(){console.log("light is Off")}
+}
+class LightCommand extends Command{ //this will have the combined log to command whare are the actions to be done 
+    constructor(light){
+        super()
+        this.light= light 
+        
+    }
+    execute(){this.light.turnOn()}
+    undo(){this.light.turnOff()}
+}
+
+const light = new Light()
+const lightCommand = new LightCommand(light);
+
+lightCommand.execute()//Light is on 
+lightCommand.undo()//Light is off
