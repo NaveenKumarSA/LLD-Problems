@@ -1,0 +1,71 @@
+class Node {
+    constructor(data){
+        this.data = data;
+        this.next = null
+    }
+}
+function reverseLL(head){
+    let prev = null, curr= head;
+    while(curr){
+        let next = curr.next
+        curr.next = prev
+        prev = curr 
+        curr = next
+    }
+    return prev
+}
+
+function deleteNode(head, x) {
+        if(x==1) return head.next
+        let temp = head
+        let i = 1
+        while(i < x-1){
+            temp = temp.next
+            i++
+        }
+        temp.next = temp.next.next
+        temp = null
+        return head
+}
+
+function findlength(head) {
+    let i = 0 
+        while(head){
+            head = head.next
+            i++
+        }
+
+        return i
+}
+
+function findMid(head){
+    let fast = head.next.next
+    slow= head.next
+    while(fast && fast.next){
+        fast=fast.next.next
+        slow=slow?.next
+    }
+    return slow.data
+}
+    
+function printList(curr){
+    while(curr){
+        console.log(curr.data)
+        curr= curr.next;
+    }
+}
+
+let head = new Node(1);
+head.next= new Node(2)
+head.next.next= new Node(3)
+head.next.next.next= new Node(4)
+head.next.next.next.next= new Node(5)
+// head.next.next.next.next.next= new Node(5)
+// head.next.next.next.next.next.next= new Node(5)
+
+//printList(head)
+//head = deleteNode(head,1)
+// console.log("deleted")
+printList(head)
+console.log("length found",findlength(head))
+console.log("mid found",findMid(head))
