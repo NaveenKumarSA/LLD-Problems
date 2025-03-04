@@ -1,0 +1,19 @@
+function LongSS(str){
+    let st = new Set()
+    let l=max= 0 
+    for(let r = 0 ; r < str.length; r++){
+            while(st.has(str[r])){
+                console.log(st, r)
+                st.delete(str[l])
+                l++
+            }
+
+            st.add(str[r])
+            max = Math.max(r-l+1, max)
+    }
+    console.log(l,max)
+    return max
+    
+}
+
+LongSS("abcabcbbbbbbbb")
